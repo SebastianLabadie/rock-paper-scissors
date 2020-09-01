@@ -6,7 +6,7 @@ const TokenStyled=styled.div`
     height:125px;
     border:15px solid  ${({color})=>color.base};
     box-sizing: border-box;
-     background:radial-gradient(circle 200px at bottom,#fff  45% , #bcc1d5 48%);
+     background:${({color})=>color.border==='#122343' ?  '#122343' : 'radial-gradient(circle 200px at bottom,#fff  45% , #bcc1d5 48%)'};
     border-radius:50%;
     display:flex;
     justify-content:center;
@@ -33,13 +33,22 @@ const colors={
         base:'#eca81e',
         border:'#c76c14'
     },
-}
-
-const Token = ({name}) => {
+    default:{
+        base:'#152a51',
+        border:'#122343'
+    },
     
+}   
+
+const Token = ({name = 'default', onClick}) => {
+    
+    const color= colors[name] ? colors[name] : colors.default
     return (
-        <TokenStyled color={colors[name]}>
+        <TokenStyled onClick={()=>onClick(name)} color={color}>
+            { name === 'default' ?
+            null :
             <img src={`./images/icon-${name}.svg`} alt="asd"/>
+            }
         </TokenStyled>
     )
 }

@@ -14,12 +14,18 @@ cursor:pointer;
 text-transform:uppercase;
 letter-spacing:2.5px;
 `
-const Button = ({onClick}) => {
+const Button = ({children,onClick}) => {
     return (
         <ButtonStyled onClick={onClick}> 
-     RULES
+    {children}
         </ButtonStyled>
     )
 }
+
+export const WhiteButton = styled(ButtonStyled)`
+    background:#fff;
+    color:#101a3f;
+    min-width:220px;
+`
 
 export default Button

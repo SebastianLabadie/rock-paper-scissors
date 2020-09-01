@@ -31,15 +31,15 @@ const RulesStyled = styled.div`
 `;
 
 const Rules = () => {
-  const [playing, setPlaying] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const handleToggleRulesClick = () => {
-    setPlaying(!playing);
+    setVisible(!visible);
   };
 
   return (
     <RulesStyled>
-      {playing ? (
+      {visible ? (
         <div className="rules-overlay">
           <h2>Rules</h2>
           <img src="./images/image-rules.svg" alt="Game Rules img" />
@@ -52,7 +52,9 @@ const Rules = () => {
         </div>
       ) : null}
 
-      <Button onClick={handleToggleRulesClick} />
+      <Button onClick={handleToggleRulesClick}>
+          Rules
+          </Button>
     </RulesStyled>
   );
 };
