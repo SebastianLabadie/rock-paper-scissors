@@ -15,6 +15,14 @@ const HeaderStyled=styled.div`
         text-transform:uppercase;
         font-weight:700;
         line-height:16px;
+        margin:0;
+    }
+    @media screen and (min-width: 768px) {
+        padding:18px 18px 18px 18px ;
+        h1{
+        font-size:36px;
+        line-height:.9;
+    }
     }
 `
 

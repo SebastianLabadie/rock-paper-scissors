@@ -20,6 +20,17 @@ const ScoreStyled=styled.div`
         margin:0;
         
     }
+
+  @media screen and (min-width: 768px) {
+    padding:10px 20px;
+      small{
+        font-size:16px;
+      }
+    p{
+        font-size:60px;
+    }
+  }
+
 `
 
 
