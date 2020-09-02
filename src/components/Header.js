@@ -26,7 +26,7 @@ const Header = () => {
                 Papper <br/>
                 Scissors
             </h1>
-        <Score />
+        <Score value='0'/>
         </HeaderStyled>
     )
 }

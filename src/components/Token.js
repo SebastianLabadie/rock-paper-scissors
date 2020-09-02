@@ -44,7 +44,7 @@ const Token = ({name = 'default', onClick}) => {
     
     const color= colors[name] ? colors[name] : colors.default
     return (
-        <TokenStyled onClick={()=>onClick(name)} color={color}>
+        <TokenStyled onClick={()=>onClick ? onClick(name) : null } color={color}>
             { name === 'default' ?
             null :
             <img src={`./images/icon-${name}.svg`} alt="asd"/>

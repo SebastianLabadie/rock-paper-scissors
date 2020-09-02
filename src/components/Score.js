@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import styled from 'styled-components'
-
+import {ScoreContext} from '../App'
 const ScoreStyled=styled.div`
     background: #fff;
     color: black;
@@ -24,10 +24,13 @@ const ScoreStyled=styled.div`
 
 
 const Score = () => {
+
+    const {score}=useContext(ScoreContext)
+
     return (
         <ScoreStyled>
            <small>score</small>
-           <p>12</p>
+           <p>{score}</p>
         </ScoreStyled>
     )
 }

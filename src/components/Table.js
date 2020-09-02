@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import styled from "styled-components";
 import Token from "./Token";
 import {WhiteButton} from './Button'
+import {ScoreContext} from '../App'
+
 
 const TableStyled = styled.div`
   margin: 2em 0;
@@ -73,6 +75,8 @@ const Table = () => {
   const [IAPick, setIAPick] = useState('default')
   const [playing, setPlaying] = useState(false);
   const [pick, setPick] = useState("");
+  const [result, setResult] = useState("????");
+  const {score,setScore} = useContext(ScoreContext)
 
   const getRandomInt=(min, max)=> {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -83,9 +87,13 @@ const Table = () => {
     const IAPick= await lunchIAPick()
     setIAPick(IAPick)
     const result= playWithIA(name,IAPick)
-    
+    setResult(result)
+    if(result === 'win!!'){
+      setScore(score + 1)
+    }
   };
   const handleTryAgainClick=()=>{
+    setResult('????')
     setPlaying(!playing)
   }
 
@@ -111,26 +119,26 @@ const Table = () => {
     }
     if (pick === 'paper') {
       if (IAchoice === 'scissors') {
-        return 'lose'
+        return 'lose :c'
       }
       if (IAchoice === 'rock') {
-        return 'win'
+        return 'win!!'
       }
     }
     if (pick === 'scissors') {
       if (IAchoice === 'paper') {
-        return 'win'
+        return 'win!!'
       }
       if (IAchoice === 'rock') {
-        return 'lose'
+        return 'lose :c'
       }
     }
     if (pick === 'rock') {
       if (IAchoice === 'paper') {
-        return 'lose'
+        return 'lose :c'
       }
       if (IAchoice === 'scissors') {
-        return 'win'
+        return 'win!!'
       }
     }
   }
@@ -158,7 +166,7 @@ const Table = () => {
             <p>The House Picked</p>
           </div>
           <div className="results">
-            <h2>You Win!!</h2>
+            <h2>You {result}</h2>
             <WhiteButton onClick={handleTryAgainClick}>
              Play Again
             </WhiteButton>
