@@ -4,6 +4,17 @@ import Button from "./Button";
 
 const RulesStyled = styled.div`
   text-align: center;
+  &::before {
+    content: '';
+    display: ${({ visible }) => visible ? 'block' : 'none'};
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0,0,0,.6);
+  }
   .rules-overlay {
     background: #fff;
     padding:3em 0;
@@ -26,6 +37,7 @@ const RulesStyled = styled.div`
     }
     .close-btn{
         margin-top:2em 0;
+        cursor: pointer;
     }
   }
  
@@ -34,6 +46,26 @@ const RulesStyled = styled.div`
       position: fixed;
       right: 2em;
       bottom: 2em;
+    }
+    .rules-modal {
+      width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      top: 0;
+      bottom: initial;
+      transform: translateY(50%);
+      padding: 2em;
+      box-sizing: border-box;
+      h2 {
+        font-size: 32px;
+        align-self: flex-start;
+        margin: 0 0 1.2em 0;
+      }
+    .close-btn {
+      position: absolute;
+      right: 2em;
+      top: 3em;
+    }
     }
     }
 `;
@@ -46,9 +78,9 @@ const Rules = () => {
   };
 
   return (
-    <RulesStyled>
+    <RulesStyled visible={visible}>
       {visible ? (
-        <div className="rules-overlay">
+        <div className="rules-modal">
           <h2>Rules</h2>
           <img src="./images/image-rules.svg" alt="Game Rules img" />
           <img

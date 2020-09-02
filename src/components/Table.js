@@ -65,7 +65,12 @@ const TableStyled = styled.div`
   }
 
   @media screen and (min-width: 1024px ){
-    grid-gap: 30px 150px;
+    grid-template-columns: 300px 300px;
+    ${({ playing, result }) => (playing && result) && 'grid-template-columns: 300px 110px 110px 300px;'}
+    
+    & div:nth-of-type(3) {
+      ${({ playing, result }) => (playing && result) && 'grid-column: 2 / 4; grid-row: 1;'}
+    }
     .line{
       width:300px;
     }
@@ -146,7 +151,7 @@ const Table = () => {
   };
 
   return (
-    <TableStyled playing={playing}>
+    <TableStyled playing={playing} result={result}>
       <span className="line"></span>
 
       {!playing ? (
@@ -160,6 +165,7 @@ const Table = () => {
           <div className="in-game">
             <Token
               name={pick}
+              playing={playing}
               isShadowAnimated={result === "win!!" ? "true" : null}
             />
             <p>You picked</p>
@@ -167,6 +173,7 @@ const Table = () => {
           <div className="in-game">
             <Token
               name={IAPick}
+              playing={playing}
               isShadowAnimated={result === "lose" ? "true" : null}
             />
             <p>The House Picked</p>
